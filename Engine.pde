@@ -2,7 +2,7 @@
 class EngineVn{
     boolean hasPlayed = false;
     AudioPlayer BGMOP, alarm,ringtone_hp,calling,sadending,bell,sadending2,happyending;
-    Button btnPlay,btnExit,btnch1,btnch2;
+    Button btnPlay,btnExit,btnCredit;
     int route = 0; 
     dialogue dialog;
     float rotationY = 0;
@@ -31,19 +31,43 @@ class EngineVn{
     boolean changeRoute = false;
     ending end;
     boolean TheEnd = false;
+    String[] credits;
+    CreditScene cdr;
     EngineVn(){
         loadingScreen = new LoadingPage();
         transition = new FadeTransition(300);
         FontArial = createFont("Arial",18);
         FontArialBold = createFont("Arial Bold",18);
         btnPlay = new Button(800, 400, 200, 50, "PLAY",btncolor,FontArial,18);
-        btnExit = new Button(800,500,200,50, "EXIT",btncolor,FontArial,18);
+        btnCredit = new Button(800,500,200,50, "CREDIT",btncolor,FontArial,18);
+        btnExit = new Button(800,600,200,50, "Exit", btncolor,FontArial,18);
         dialog = new dialogue();
-        
         end = new ending();
         btnChoice1 = new ChoiceSlot(800, 400, 400, 50, text, 255, FontArial, 18,choice1);
         btnChoice2 = new ChoiceSlot(800, 460, 400, 50, text, 255, FontArial, 18, choice2);
         scenes = new ArrayList<scenebackground>();
+        credits =  new String[] {
+                "Game Desainer",
+            "2109106134 Abdullah Mustaqim",
+            "  Script Writer ",
+            "2109106134 Abdullah Mustaqim",
+            " Desain Grafis ",
+            "2109106136 Achmad Azharianto",
+            "2109106133 Novitasari Malisan",
+            "2109106129 Arif Wijaksono",
+            " Classrom Scene ",
+            "2109106129 Arif Wijaksono",
+            " Bedroom Scene ",
+            "2109106136 Achmad Azharianto",
+            " FrontSchool Scene ",
+            "2109106133 Novitasari Malisan",
+            "   Sound  ",
+            "2109106133 Novitasari Malisan",
+            "2109106134 Abdullah Mustaqim",
+            "And Thank You"
+            };
+         cdr = new CreditScene(credits);
+          
         }
         void setupChara(){
         }
@@ -58,17 +82,17 @@ class EngineVn{
     void draw(){
         switch(counters){
         case 0:
-            x++;
+            hasPlayed = false;
             background(255);
-            // tstbtn.draw();
             btnPlay.display();
+            btnCredit.display();
             btnExit.display();
             Opening_Text();
             buttonHover();
             btnclik();
-            if(x==1){
+            if(!hasPlayed){
             BGMOP.play();
-            BGMOP.loop();
+            hasPlayed=true;
         }
         break;
         case 1:
@@ -114,10 +138,21 @@ class EngineVn{
             case 3:
             end.draw();
             break;
-            }
-            }         
+            case 4:
+            BGMOP.close();
+                cdr.display();
+                if(cdr.isFinished()){
+                    if(keyPressed){
+                        if(key== ' '){
+                            counters = 0;
+                        }
+                    }
+                }
+            break;
+        }
+            }       
     void run(){
-        gameplay();
+            gameplay();
         draw();
     }
     void handleChoice(int choice2,int choice1) {
@@ -156,6 +191,9 @@ class EngineVn{
         if(btnExit.isMouseOver() && btnExit.isPressed()){
             exit();
         }
+         if(btnCredit.isMouseOver() && btnCredit.isPressed()){
+            counters = 4;
+        }
     }
     void buttonHover(){
         
@@ -167,6 +205,10 @@ class EngineVn{
             btnExit.setColor(btn_hover_red); // Change the button color
         } else {
             btnExit.setColor(btncolor); // Reset the button color
+        }if (btnCredit.isMouseOver()) {
+            btnCredit.setColor(btn_hover_red); // Change the button color
+        } else {
+            btnCredit.setColor(btncolor); // Reset the button color
         }
 }
     void buttonHover(ChoiceSlot btn){
@@ -177,6 +219,7 @@ class EngineVn{
         }
     }
 void gotoScene(scenebackground scene) {
+
         currScene = scene;
         currScene.counter = 0;
      for(int j=0; j<scene.act.size(); j++){

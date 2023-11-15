@@ -78,7 +78,6 @@ class dialogslot{
     
     if (!finished && txtD.length() < txt.length()) {
       txtD += txt.charAt(txtD.length());
-      print(txtD);
     } else if (txtD.length() == txt.length()) {
       finished = true;
     }

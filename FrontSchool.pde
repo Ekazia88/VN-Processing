@@ -10,6 +10,7 @@ int minuteFontSize = 15;
         pohon=loadImage("/Assets/items/pohon.png");
     }
   void draw() {
+    background(#73391B);
     drawSky();
     drawBuildings();
     drawWindows();

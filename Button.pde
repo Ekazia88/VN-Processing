@@ -32,6 +32,7 @@ class Button{
     strokeWeight(5);
      
     rect(Pos.x, Pos.y, Width, Height);
+    fill(255);
     textAlign(CENTER, CENTER); 
     textFont(font,fontSize);
     text(Label, Pos.x + (Width / 2), Pos.y + (Height / 2));

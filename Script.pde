@@ -73,6 +73,7 @@ class Script extends EngineVn{
                 speak("Di suatu pagi cerah anto masih tidur di karenakan bermain Valorant semalaman bersama dengan tedy");
                 break;
                 case 1:
+                hasPlayed = false;
                 if(!hasPlayed){
                 alarm.play();
                 hasPlayed = true;
@@ -115,7 +116,6 @@ class Script extends EngineVn{
                 hasPlayed = false;
                 if(!hasPlayed){
                 ringtone_hp.play();
-                ringtone_hp.loop();
                 hasPlayed = true;
                 }
                 speak("suara ringtone hp");
@@ -173,7 +173,6 @@ class Script extends EngineVn{
                 hasPlayed = false;
                 if(!hasPlayed){
                 sadending.play();
-                sadending.loop();
                 hasPlayed = true;
                 }
                 speak("yahh kamu dapat bad ending");
@@ -362,20 +361,23 @@ class Script extends EngineVn{
             speak(tedy_school_angrytalk,"enak.. aja, aku main bangun ini tepat waktu aja");
             break;
             case 21:
-            tedy_school_angrytalk.setSpoken(false);
             karina_school_angrypout.setSpoken(false);
+            tedy_school_angrytalk.setSpoken(false);
             speak("jangan betengkar dong");
             break;
             case 22:
              hasPlayed = false;
                 if(!hasPlayed){
+                println(hasPlayed);
                 bell.play();
                 hasPlayed = true;
                 }
             speak("suara bell");
+            break;
             case 23:
             bell.close();
             speak(karina_school_normaltalk,"ayo masuk dah bunyi bell tuh");
+            break;
             case 24:
             dialog.choiceBlock = true;
             btnChoice1.setLabel("Ajak bolos");
@@ -389,7 +391,6 @@ class Script extends EngineVn{
             case 26:
             karina_school_normaltalk.setSpoken(false);
             speak(karina_school_huh, "kau mau aku ikut bolos ??");
-                     
             break;
             case 27:
             tedy_school_normaltalk.setSpoken(false);
