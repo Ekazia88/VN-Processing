@@ -154,7 +154,7 @@ class Script extends EngineVn{
                 break;
                 case 21:
                 tedy_school_normaltalk.setSpoken(false);
-                speak("bangke!!!!");
+                speak("Bangke ");
                 break;
                 case 22:
                 speak("si buaya dapatin dia ");

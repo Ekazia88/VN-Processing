@@ -1,5 +1,3 @@
-import g4p_controls.*;
-import processing.sound.*;
 import ddf.minim.*;
 Minim minim;
 AudioPlayer BGMOP, BGM01,BGM02,BGM03,bell,door_open,door_close,alarm,ringtone_hp,calling,sadending,sadending2,happyending;
